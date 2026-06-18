@@ -1,0 +1,50 @@
+{{- $current := .RelPermalink -}}
+{{- $links := slice
+    (dict "url" "/" "label" "Home")
+    (dict "url" "/about/" "label" "About")
+    (dict "url" "/contact/" "label" "Contact")
+    (dict "url" "/estimate/" "label" "Request an Estimate")
+-}}
+<header class="bg-tan-light border-b border-tan-deep">
+  <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-2 shrink-0" aria-label="House to Home Solutions home">
+      <img src="/images/Logo_Black.png" alt="" class="h-10 w-auto">
+      <span class="font-display text-xl text-purple hidden sm:inline">House to Home</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-6 text-purple font-medium">
+      {{- range $links }}
+        {{- $active := eq $current .url -}}
+        <li>
+          <a href="{{ .url }}"
+             class="hover:text-purple-dark transition-colors {{ if $active }}underline underline-offset-4 decoration-2{{ end }}">
+            {{ .label }}
+          </a>
+        </li>
+      {{- end }}
+      <li>
+        <a href="{{ site.Params.googleReview }}" target="_blank" rel="noopener"
+           class="hover:text-purple-dark transition-colors">Write a Review</a>
+      </li>
+    </ul>
+
+    <details class="md:hidden relative">
+      <summary class="p-2 -m-2 text-purple" aria-label="Open menu">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/>
+        </svg>
+      </summary>
+      <ul class="absolute right-0 top-full mt-2 w-56 bg-white border border-tan-deep rounded-xl shadow-lg py-2 z-20">
+        {{- range $links }}
+          <li>
+            <a href="{{ .url }}" class="block px-4 py-2 text-purple hover:bg-tan">{{ .label }}</a>
+          </li>
+        {{- end }}
+        <li>
+          <a href="{{ site.Params.googleReview }}" target="_blank" rel="noopener"
+             class="block px-4 py-2 text-purple hover:bg-tan">Write a Review</a>
+        </li>
+      </ul>
+    </details>
+  </nav>
+</header>

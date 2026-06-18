@@ -1,0 +1,25 @@
+baseURL = "https://test.housetohomes.net/"
+languageCode = "en-us"
+title = "House to Home Solutions"
+enableRobotsTXT = true
+
+[params]
+  description = "Your trusted neighborhood handyman in Sioux Falls. Reliable repairs, custom installs, and honest craftsmanship from Charlie at House to Home Solutions."
+  phone = "(605) 400-4440"
+  phoneTel = "+16054004440"
+  email = "housetohomes.solutions@gmail.com"
+  facebook = "https://www.facebook.com/people/House-to-Home-Solutions/61567396322695/"
+  instagram = "https://www.instagram.com/h2h.solutions/"
+  googleReview = "https://g.page/r/CWpYvnZqvDsDEBM/review"
+  serviceArea = "Serving Sioux Falls and surrounding areas"
+  web3FormsKey = "ee4217bb-6555-49b5-8361-ae5cc6b10793"
+  ogImage = "/images/HomePage_Cover.jpg"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[minify]
+  disableHTML = false

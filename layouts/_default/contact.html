@@ -1,0 +1,80 @@
+{{ define "main" }}
+<section class="max-w-6xl mx-auto px-4 py-12 lg:py-20">
+  <div class="grid lg:grid-cols-12 gap-10 items-start">
+    <div class="lg:col-span-6">
+      <img src="/images/OurMission.jpg" alt="Charlie at work" class="rounded-2xl shadow-md w-full h-auto object-cover">
+    </div>
+    <div class="lg:col-span-6">
+      <h1 class="font-display text-5xl text-purple-dark">Get in Touch</h1>
+      <p class="mt-3 text-lg text-muted">{{ site.Params.serviceArea }}.</p>
+
+      <dl class="mt-8 space-y-5">
+        <div class="flex items-start gap-4">
+          <span class="mt-1 text-purple shrink-0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div>
+            <dt class="text-sm uppercase tracking-wide text-muted font-semibold">Call</dt>
+            <dd class="mt-1"><a href="tel:{{ site.Params.phoneTel }}" class="text-purple-dark text-lg hover:underline">{{ site.Params.phone }}</a></dd>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <span class="mt-1 text-purple shrink-0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-linejoin="round"/>
+              <polyline points="22,6 12,13 2,6" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div>
+            <dt class="text-sm uppercase tracking-wide text-muted font-semibold">Email</dt>
+            <dd class="mt-1"><a href="mailto:{{ site.Params.email }}" class="text-purple-dark text-lg hover:underline break-all">{{ site.Params.email }}</a></dd>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <span class="mt-1 text-purple shrink-0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.988H7.898v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562v1.875h2.773l-.443 2.89h-2.33V21.878C18.343 21.128 22 16.991 22 12z"/>
+            </svg>
+          </span>
+          <div>
+            <dt class="text-sm uppercase tracking-wide text-muted font-semibold">Facebook</dt>
+            <dd class="mt-1"><a href="{{ site.Params.facebook }}" target="_blank" rel="noopener" class="text-purple-dark text-lg hover:underline">facebook.com/House to Home Solutions</a></dd>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <span class="mt-1 text-purple shrink-0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M7.75 2C4.574 2 2 4.574 2 7.75v8.5C2 19.426 4.574 22 7.75 22h8.5C19.426 22 22 19.426 22 16.25v-8.5C22 4.574 19.426 2 16.25 2h-8.5zM12 7.25a4.75 4.75 0 110 9.5 4.75 4.75 0 010-9.5zM18.25 5.75a1 1 0 110 2 1 1 0 010-2zM12 9.25a2.75 2.75 0 100 5.5 2.75 2.75 0 000-5.5z"/>
+            </svg>
+          </span>
+          <div>
+            <dt class="text-sm uppercase tracking-wide text-muted font-semibold">Instagram</dt>
+            <dd class="mt-1"><a href="{{ site.Params.instagram }}" target="_blank" rel="noopener" class="text-purple-dark text-lg hover:underline">@h2h.solutions</a></dd>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <span class="mt-1 text-purple shrink-0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/>
+            </svg>
+          </span>
+          <div>
+            <dt class="text-sm uppercase tracking-wide text-muted font-semibold">Leave a Review</dt>
+            <dd class="mt-1"><a href="{{ site.Params.googleReview }}" target="_blank" rel="noopener" class="text-purple-dark text-lg hover:underline">Write a review on Google</a></dd>
+          </div>
+        </div>
+      </dl>
+
+      <div class="mt-10">
+        <a href="/estimate/" class="btn-primary">Request an Estimate &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

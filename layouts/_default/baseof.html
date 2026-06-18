@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+  {{- partial "head.html" . -}}
+</head>
+<body class="min-h-screen bg-tan-light text-ink antialiased flex flex-col">
+  {{- partial "nav.html" . -}}
+  {{- partial "banner.html" . -}}
+  <main class="flex-1">
+    {{- block "main" . }}{{- end }}
+  </main>
+  {{- partial "footer.html" . -}}
+</body>
+</html>
