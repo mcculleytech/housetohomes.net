@@ -8,7 +8,7 @@
   {{- partial "banner.html" . -}}
   {{- if ne (urls.Parse site.BaseURL).Hostname "housetohomes.net" -}}
   <div style="background:#f59e0b;color:#111;text-align:center;font-size:.75rem;font-weight:700;letter-spacing:.06em;padding:.25rem 1rem">
-    DEV ENVIRONMENT — {{ (urls.Parse site.BaseURL).Hostname }}
+    DEV ENVIRONMENT — staging build — {{ (urls.Parse site.BaseURL).Hostname }}
   </div>
   {{- end -}}
   <main class="flex-1">
