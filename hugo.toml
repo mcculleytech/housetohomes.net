@@ -1,4 +1,4 @@
-baseURL = "https://test.housetohomes.net/"
+baseURL = "https://dev.housetohomes-net.pages.dev/"
 languageCode = "en-us"
 title = "House to Home Solutions"
 enableRobotsTXT = true
