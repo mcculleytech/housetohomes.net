@@ -58,9 +58,24 @@ Build configuration:
 | --- | --- |
 | Build command | `npm install && npm run build` |
 | Build output | `public` |
-| Node version | `20` |
+| Production branch | `main` |
 
-Custom domain: `test.housetohomes.net` (during validation), eventually `housetohomes.net`.
+Pinned build environment (Cloudflare → Variables and secrets, Production **and** Preview):
+
+| Variable | Value |
+| --- | --- |
+| `HUGO_VERSION` | `0.163.2` |
+| `NODE_VERSION` | `20` |
+| `HUGO_BASEURL` | `https://dev.housetohomes-net.pages.dev/` — **Preview only** |
+
+`baseURL` in `hugo.toml` is the production value (`https://housetohomes.net/`). The
+`dev` branch deploys as a Preview, where `HUGO_BASEURL` overrides it so staging
+links resolve to the dev alias. This keeps `main` and `dev` identical in git (no
+per-branch config divergence). Local matches via `.nvmrc` (Node) + Homebrew Hugo.
+
+Custom domains: `test.housetohomes.net` (pre-prod, retired after launch) and
+`housetohomes.net` (production). The `dev` branch's staging URL is the Pages
+branch alias `dev.housetohomes-net.pages.dev`.
 
 ## Business contact info
 

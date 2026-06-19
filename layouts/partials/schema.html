@@ -1,0 +1,22 @@
+{{- /* JSON-LD LocalBusiness structured data — populated from hugo.toml [params].
+       Piped through safeJS so html/template's <script> JS-context escaper
+       emits the JSON object verbatim instead of re-encoding it as a string. */ -}}
+{{- $biz := dict
+  "@context" "https://schema.org"
+  "@type" "HomeAndConstructionBusiness"
+  "name" site.Title
+  "description" site.Params.description
+  "url" site.BaseURL
+  "telephone" site.Params.phoneTel
+  "email" site.Params.email
+  "image" (absURL site.Params.ogImage)
+  "logo" (absURL "images/Logo_Black.png")
+  "areaServed" site.Params.serviceArea
+  "address" (dict
+    "@type" "PostalAddress"
+    "addressLocality" "Sioux Falls"
+    "addressRegion" "SD"
+    "addressCountry" "US")
+  "sameAs" (slice site.Params.facebook site.Params.instagram)
+-}}
+<script type="application/ld+json">{{ $biz | jsonify | safeJS }}</script>

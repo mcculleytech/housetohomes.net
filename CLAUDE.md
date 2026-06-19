@@ -45,10 +45,17 @@ don't hardcode** these values.
 
 Single Cloudflare Pages project: **`housetohomes-net`**. Auto-deploys on push.
 
-| Branch | CF environment | URL | baseURL in `hugo.toml` |
-|--------|---------------|-----|------------------------|
-| `main` | Production | `test.housetohomes.net` (+ `housetohomes-net.pages.dev`) | `https://test.housetohomes.net/` — becomes `https://housetohomes.net/` at launch |
-| `dev`  | Preview | `https://dev.housetohomes-net.pages.dev` | `https://dev.housetohomes-net.pages.dev/` |
+| Branch | CF environment | URL | Effective baseURL |
+|--------|---------------|-----|-------------------|
+| `main` | Production | `test.housetohomes.net` (+ `housetohomes-net.pages.dev`); `housetohomes.net` at launch | `https://housetohomes.net/` (from `hugo.toml`) |
+| `dev`  | Preview | `https://dev.housetohomes-net.pages.dev` | `https://dev.housetohomes-net.pages.dev/` (from `HUGO_BASEURL` Preview var) |
+
+**`baseURL` strategy:** `hugo.toml` holds the production value on *both* branches.
+The Preview environment sets `HUGO_BASEURL=https://dev.housetohomes-net.pages.dev/`,
+which Hugo maps onto `baseURL` — so only preview builds use the dev URL, and
+`main`/`dev` stay identical in git (no per-branch config to merge). Pinned build
+vars (`HUGO_VERSION=0.163.2`, `NODE_VERSION=20`) are set on both environments;
+`.nvmrc` pins Node locally.
 
 - **Production branch must stay `main`** in CF Pages settings. (If a `dev` push
   ever shows up tagged "Production" on `test.housetohomes.net`, the production
@@ -58,7 +65,7 @@ Single Cloudflare Pages project: **`housetohomes-net`**. Auto-deploys on push.
   its stable staging URL. Don't try to attach a custom subdomain to a preview
   branch (it 522s).
 - Build settings: command `npm install && npm run build`, output `public`,
-  Node 20.
+  production branch `main`. Build env pinned via the Cloudflare vars above.
 - `test.housetohomes.net` is the current pre-prod domain; it will be retired
   after the `housetohomes.net` cutover.
 
@@ -79,9 +86,9 @@ So it shows on dev/staging and `localhost`, but **never** on the live
 - `dev` is for staging/testing; `main` is what ships to production.
 - Both branches are protected on GitHub (no force-push, no deletion); direct
   pushes are allowed.
-- The `baseURL` line differs between `dev` and `main` on purpose. When merging
-  `dev` → `main`, keep `main`'s production `baseURL` — don't carry the dev alias
-  over.
+- `dev` and `main` hold identical config (`baseURL` is the prod value on both;
+  the dev URL comes from the `HUGO_BASEURL` Preview var), so `dev` → `main` merges
+  cleanly with no baseURL conflict.
 
 ## Forms (Web3Forms)
 
@@ -111,3 +118,9 @@ repo, and dev/staging traffic is not tracked.
 `layouts/partials/head.html` emits canonical URL, Open Graph, and Twitter card
 tags (OG image: `site.Params.ogImage`). `enableRobotsTXT` is on and Hugo
 generates `sitemap.xml` — both depend on a correct `baseURL`.
+
+`layouts/partials/schema.html` (included from `head.html`) emits a
+`HomeAndConstructionBusiness` JSON-LD block built from `site.Params`. Note: it
+pipes through **`safeJS`** — inside a `<script>` tag Go's `html/template` applies
+JS-context escaping and will re-encode `jsonify` output as a quoted string
+without it. To add fields, edit the `dict` in that partial (don't hardcode).
